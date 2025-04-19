@@ -2,9 +2,32 @@ export const graphUrl = 'https://learn.zone01oujda.ma/api/graphql-engine/v1/grap
 export const authUrl = 'https://learn.zone01oujda.ma/api/auth/signin';
 
 export const userNameQuery = `{
-    user {
-      firstName
-      lastName
-    }
-  }
+                                user {
+                                  firstName
+                                  lastName
+                                }
+                              }
+`;
+
+export const auditAndLevelQuery = `{
+                                    user {
+                                      login
+                                      firstName
+                                      lastName
+                                      totalUp
+                                      totalDown
+                                      auditRatio
+                                    }
+
+                                    transaction_aggregate(
+                                      where: {type: {_eq: "level"}, event: {object: {name: {_eq: "Module"}}}}
+                                      order_by: {createdAt: desc}
+                                    ) {
+                                      aggregate {
+                                        max {
+                                          amount
+                                        }
+                                      }
+                                    }
+                                  }
 `;

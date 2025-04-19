@@ -1,3 +1,5 @@
+import { authUrl } from "./const.js";
+
 export function HandleLogin(){
     const app = document.getElementById('app')
     if (app){
@@ -26,19 +28,18 @@ form.addEventListener('submit', async (e) => {
   const credentials = btoa(`${identifier}:${password}`);
 
   try {
-    const response = await fetch('https://learn.zone01oujda.ma/api/auth/signin', {
+    const response = await fetch(authUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${credentials}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Basic ${credentials}`,
+      },
     });
 
     if (!response.ok) {
       throw new Error('Invalid username/email or password');
     }
 
-    const jwt = await response.text();
+    const jwt = await response.json();
     localStorage.setItem('jwt', jwt);
     window.location.href = '/'; // Redirect after login
 

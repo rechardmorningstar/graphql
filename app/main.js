@@ -51,8 +51,3 @@ window.addEventListener("popstate", async () => {
   await handleRoutes();
 });
 
-// HandleLogin()
-// if (window.location.href === 'Profile'){
-//     Profile()
-// }
-// console.log(window.location.href);

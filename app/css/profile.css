@@ -1,0 +1,314 @@
+/* Base styles */
+:root {
+  --primary-color: #00ffff;
+  --secondary-color: #ff00ff;
+  --background-dark: #000000;
+  --background-light: #ffffff;
+  --text-dark: #00ffff;
+  --text-light: #000000;
+  --accent-color: #ff2975;
+  --glow-effect: 0 0 10px var(--primary-color);
+  --border-neon: 1px solid var(--primary-color);
+}
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+#hdr {
+  width: 100%;
+  height: 70px;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+/* Buttons */
+#darkModeToggle, #logoutBtn {
+  padding: 8px 12px;
+  border: var(--border-neon);
+  background: transparent;
+  color: var(--primary-color);
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: 15px;
+  transition: all 0.3s ease;
+}
+
+#darkModeToggle:hover, #logoutBtn:hover {
+  box-shadow: var(--glow-effect);
+  transform: translateY(-2px);
+}
+
+/* Main content */
+#app {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 90px 20px 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* User greeting */
+.greeting-user {
+  grid-column: 1 / -1;
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: var(--border-neon);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Common box styling */
+.levelDiv, .auditBox, .xpDiv {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: var(--border-neon);
+  min-height: 200px;
+}
+
+.levelDiv:hover, .auditBox:hover, .xpDiv:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), var(--glow-effect);
+}
+
+/* Level circle */
+.levelDiv svg circle {
+  stroke: var(--primary-color);
+  stroke-dasharray: 283;
+  stroke-dashoffset: 0;
+  animation: pulse 2s infinite;
+}
+
+.levelDiv svg text {
+  fill: var(--text-light);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+}
+
+
+
+.auditBox .box {
+  width: 100%;
+  max-width: 300px;
+}
+
+.auditBox .audit-ratio {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.auditBox .line1 svg line, .auditBox .line2 svg line {
+  stroke: var(--accent-color);
+  stroke-linecap: round;
+}
+
+.auditBox .prs {
+  font-size: 1.2em;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.auditBox .ratio {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 10px;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+/* XP div */
+.xpDiv {
+  font-size: 2em;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xpDiv::before {
+  content: 'XP';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.4em;
+  color: var(--secondary-color);
+}
+
+/* Form styling */
+form {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  border: var(--border-neon);
+}
+
+form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-light);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Orbitron', sans-serif;
+  transition: all 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: var(--secondary-color);
+  box-shadow: var(--glow-effect);
+}
+
+#error {
+  margin-top: 10px;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+body.dark .greeting-user {
+  background-color: rgba(0, 255, 255, 0.05);
+}
+
+body.dark .levelDiv, 
+body.dark .auditBox, 
+body.dark .xpDiv {
+  background-color: rgba(0, 255, 255, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .levelDiv svg text {
+  fill: var(--primary-color);
+}
+
+body.dark form {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+body.dark input {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+body.dark button[type="submit"] {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+body.dark #darkModeToggle, body.dark #logoutBtn {
+  background-color: transparent;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { stroke-width: 10; }
+  50% { stroke-width: 14; }
+  100% { stroke-width: 10; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #app {
+    grid-template-columns: 1fr;
+  }
+  
+  .greeting-user {
+    font-size: 1.5em;
+  }
+  
+  .levelDiv, .auditBox, .xpDiv {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  #hdr {
+    height: 60px;
+    padding: 0 10px;
+  }
+  
+  #darkModeToggle, #logoutBtn {
+    padding: 6px 10px;
+    font-size: 0.8em;
+  }
+  
+  .greeting-user {
+    font-size: 1.2em;
+    padding: 10px;
+  }
+  
+  #app {
+    padding: 70px 10px 10px;
+  }
+}

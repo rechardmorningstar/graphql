@@ -26,7 +26,7 @@ export async function Profile() {
   // fetching level
   const auditAndLevelData = await fetchData(token, auditAndLevelQuery);
   const level =
-  auditAndLevelData.data.data.transaction_aggregate.aggregate.max.amount;
+    auditAndLevelData.data.data.transaction_aggregate.aggregate.max.amount;
   const levelDiv = document.createElement("div");
   levelDiv.className = "levelDiv";
   levelDiv.style.border = "2px solid black";
@@ -41,19 +41,18 @@ export async function Profile() {
   app.appendChild(levelDiv);
 
   // audit ratio
-  const auditData = await fetchData(token, auditAndLevelQuery)
+  const auditData = await fetchData(token, auditAndLevelQuery);
   const auditBox = document.createElement("div");
   auditBox.className = "auditBox";
   auditBox.style.border = "2px solid black";
 
-  const received = auditData.data.data.user[0].totalDown
-  const done = auditData.data.data.user[0].totalUp
-  const auditRatio = auditData.data.data.user[0].auditRatio
- 
+  const received = auditData.data.data.user[0].totalDown;
+  const done = auditData.data.data.user[0].totalUp;
+  const auditRatio = auditData.data.data.user[0].auditRatio;
 
-  auditBox.innerHTML = /*html*/`
+  auditBox.innerHTML = /*html*/ `
                 <div class="audit-ratio">Audits ratio</div>
-                <div class="box" style="width:300px;">
+                <div class="box">
               	<div>Done</div>
                 <div class="line1"> 
                   <svg height="50" width="294">
@@ -66,16 +65,23 @@ export async function Profile() {
                   <svg height="50" width="294">
                     <line x1="5" y1="10" x2="250" y2="10" style="stroke:red;stroke-width:12" />
                   </svg>
-                  <div class="prs">${String(received)[0]}.${String(received)[1]}</div>
+                  <div class="prs">${String(received)[0]}.${
+    String(received)[1]
+  }</div>
                 </div>
                 <div class="ratio">${String(auditRatio).slice(0, 3)}</div>
               </div>
   `;
-  app.appendChild(auditBox)
-  console.log(
-    "auditData =====>",
-    auditData.data.data.user[0].totalDown
-  );
+  app.appendChild(auditBox);
+
+  // xp section
+  const xpDiv = document.createElement("div");
+  xpDiv.className = "xpDiv";
+  xpDiv.innerText = "630k";
+  xpDiv.style.border = "2px solid black";
+  app.appendChild(xpDiv)
+
+  console.log("auditData =====>", auditData.data.data.user[0].totalDown);
 }
 
 async function fetchData(token, query) {

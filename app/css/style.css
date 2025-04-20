@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     font-family: 'Orbitron', 'Rajdhani', sans-serif;
     background-color: #ffffff;
@@ -68,7 +68,6 @@ form button[type="submit"]:hover {
     text-align: center;
 }
 
-/* Dark mode class toggle */
 body.dark {
     background-color: #111;
     color: #f4f4f4;
@@ -88,27 +87,4 @@ body.dark button[type="submit"] {
     background-color: #fff;
     color: #000;
 }
-
-/* .logout-btn {
-    padding: 8px 12px;
-    border: none;
-    background-color: #000;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .logout-btn:hover {
-    background-color: #333;
-  }
-  
-  body.dark .logout-btn {
-    background-color: #fff;
-    color: #000;
-  }
-   */
+ */

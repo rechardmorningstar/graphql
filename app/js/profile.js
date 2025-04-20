@@ -1,6 +1,6 @@
 import { logout } from "./logout.js";
-import { auditAndLevelQuery, userNameQuery } from "./const.js";
-import { greetingBox, levelBox, auditBox } from "./templates.js";
+import { auditAndLevelQuery, userNameQuery, xpQuery } from "./const.js";
+import { greetingBox, levelBox, auditBox, xpBox } from "./templates.js";
 
 export async function Profile() {
   const header = document.getElementById("hdr");
@@ -26,14 +26,11 @@ export async function Profile() {
 
 
   // xp section
-  const xpDiv = document.createElement("div");
-  xpDiv.className = "xpDiv";
-  xpDiv.innerText = "630k";
-  xpDiv.style.border = "2px solid black";
-  app.appendChild(xpDiv)
-
+  await xpBox(token, xpQuery)
 }
 
 // You need to do at least two different statistic graphs for the data given
 // Your profile must display three pieces of information which you may choose
 // add dark mode to the circle
+
+// todo : when the screen reaches 1070px get move the xp box down

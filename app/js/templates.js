@@ -38,31 +38,47 @@ export async function auditBox(token, query) {
   const received = auditData.data.data.user[0].totalDown;
   const done = auditData.data.data.user[0].totalUp;
   const auditRatio = auditData.data.data.user[0].auditRatio;
+  const ar = String(auditRatio).slice(0, 3)
+
+  const maxAudit = Math.max(done, received, 1); // prevent division by 0
+  const doneWidth = (done / maxAudit) * 294;
+  const receivedWidth = (received / maxAudit) * 294;
 
   auditBox.innerHTML = /*html*/ `
-                  <div class="audit-ratio">Audits ratio</div>
-                  <div class="box">
-                    <div>Done</div>
-                  <div class="line1"> 
-                    <svg height="50" width="294">
-                      <line x1="5" y1="10" x2="294" y2="10" style="stroke:red;stroke-width:12" />
-                    </svg>
-                    <div class="prs">${String(done)[0]}.${String(done)[1]}</div>
-                  </div>
-                  <div>Received</div>
-                  <div class="line2"> 
-                    <svg height="50" width="294">
-                      <line x1="5" y1="10" x2="250" y2="10" style="stroke:red;stroke-width:12" />
-                    </svg>
-                    <div class="prs">${String(received)[0]}.${
-    String(received)[1]
-  }</div>
-                  </div>
-                  <div class="ratio">${String(auditRatio).slice(0, 3)}</div>
-                </div>
+    <div class="audit-ratio">Audits ratio</div>
+    <div class="box">
+      <div>Done</div>
+    <div class="line1"> 
+      <svg height="50" width="294">
+        <line x1="5" y1="10" x2="${doneWidth-5}" y2="10" style="stroke:red;stroke-width:12" />
+      </svg>
+      <div class="prs">${String(done)[0]}.${String(done)[1]}</div>
+    </div>
+    <div>Received</div>
+    <div class="line2"> 
+      <svg height="50" width="294">
+        <line x1="5" y1="10" x2="${receivedWidth-5}" y2="10" style="stroke:red;stroke-width:12" />
+      </svg>
+      <div class="prs">${String(received)[0]}.${String(received)[1]}</div>
+    </div>
+      <div class="ratio">${ar}</div>
+    </div>
     `;
   app.appendChild(auditBox);
 }
 
+export async function xpBox(token, query) {
+  const xpData = await fetchData(token, query)
+  console.log("xpData ============>",xpData.data.data.transaction_aggregate.aggregate.sum.amount
+  );
+  
+
+  const xpDiv = document.createElement("div");
+  xpDiv.className = "xpDiv";
+  xpDiv.style.border = "2px solid black";
+  xpDiv.innerText = "630k"
+
+  app.appendChild(xpDiv)
+}
+
 function skllisGraph() {}
-function progressGraph() {}

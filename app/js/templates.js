@@ -38,7 +38,7 @@ export async function auditBox(token, query) {
   const received = auditData.data.data.user[0].totalDown;
   const done = auditData.data.data.user[0].totalUp;
   const auditRatio = auditData.data.data.user[0].auditRatio;
-  const ar = String(auditRatio).slice(0, 3)
+  const ar = String(auditRatio).slice(0, 3);
 
   const maxAudit = Math.max(done, received, 1); // prevent division by 0
   const doneWidth = (done / maxAudit) * 294;
@@ -50,14 +50,18 @@ export async function auditBox(token, query) {
       <div>Done</div>
     <div class="line1"> 
       <svg height="50" width="294">
-        <line x1="5" y1="10" x2="${doneWidth-5}" y2="10" style="stroke:red;stroke-width:12" />
+        <line x1="5" y1="10" x2="${
+          doneWidth - 5
+        }" y2="10" style="stroke:red;stroke-width:12" />
       </svg>
       <div class="prs">${String(done)[0]}.${String(done)[1]}</div>
     </div>
     <div>Received</div>
     <div class="line2"> 
       <svg height="50" width="294">
-        <line x1="5" y1="10" x2="${receivedWidth-5}" y2="10" style="stroke:red;stroke-width:12" />
+        <line x1="5" y1="10" x2="${
+          receivedWidth - 5
+        }" y2="10" style="stroke:red;stroke-width:12" />
       </svg>
       <div class="prs">${String(received)[0]}.${String(received)[1]}</div>
     </div>
@@ -68,17 +72,43 @@ export async function auditBox(token, query) {
 }
 
 export async function xpBox(token, query) {
-  const xpData = await fetchData(token, query)
-  console.log("xpData ============>",xpData.data.data.transaction_aggregate.aggregate.sum.amount
-  );
-  
+  const xpData = await fetchData(token, query);
+  console.log("xpData ============>", xpData.data.data.transaction);
 
   const xpDiv = document.createElement("div");
   xpDiv.className = "xpDiv";
   xpDiv.style.border = "2px solid black";
-  xpDiv.innerText = "630k"
+  const xpValue =
+    xpData.data.data.transaction_aggregate.aggregate.sum.amount / 1000;
 
-  app.appendChild(xpDiv)
+  xpDiv.innerHTML = /*html*/ `
+  <div class="xpValue">${xpValue} k</div>
+  <div class="transactions-box">
+    <!--  -->
+  </div>
+  `;
+  app.appendChild(xpDiv);
+
+  /**
+        "path": "/oujda/module/real-time-forum",
+        "amount": 103500,
+        "createdAt": "2025-03-04T15:31:57.46324+00:00"
+      }
+   */
+
+  // transactons container
+  const transBox = document.querySelector(".transactions-box");
+  const txData = xpData.data.data.transaction;
+
+  txData.forEach((t) => {
+    const pathSpan = document.createElement('span')
+    pathSpan.className = "pathSpan";
+    const amountSpan = document.createElement('span');
+    amountSpan.className = "amountSpan";
+    const dateSpan = document.createElement('span');
+    dateSpan.className = 'dateSpan';
+    
+  });
 }
 
 function skllisGraph() {}

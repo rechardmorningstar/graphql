@@ -54,6 +54,10 @@ export const xpQuery = `
     transaction(
          where: {
            type: { _eq: "xp" },
+           _and: [
+                { path: { _nlike: "%piscine-go%" } },
+                { path: { _nlike: "%piscine-js/%" } }
+            ]
         },
         order_by: { createdAt: desc },
     ) {

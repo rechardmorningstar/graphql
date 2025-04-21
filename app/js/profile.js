@@ -11,7 +11,7 @@ export async function Profile() {
 
   logout();
 
-  const app = document.getElementById("app");
+  // const app = document.getElementById("app");
   const token = localStorage.getItem("jwt");
 
   // greeting user

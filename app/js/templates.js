@@ -12,6 +12,7 @@ export async function greetingBox(token, query) {
 }
 
 export async function levelBox(token, query) {
+  const lb = document.querySelector(".left-boxes");
   const auditAndLevelData = await fetchData(token, query);
   const level =
     auditAndLevelData.data.data.transaction_aggregate.aggregate.max.amount;
@@ -26,10 +27,11 @@ export async function levelBox(token, query) {
                             <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="black">${level}</text>
                           </svg>
     `;
-  app.appendChild(levelDiv);
+  lb.appendChild(levelDiv);
 }
 
 export async function auditBox(token, query) {
+  const lb = document.querySelector(".left-boxes");
   const auditData = await fetchData(token, query);
   const auditBox = document.createElement("div");
   auditBox.className = "auditBox";
@@ -68,10 +70,11 @@ export async function auditBox(token, query) {
       <div class="ratio">${ar}</div>
     </div>
     `;
-  app.appendChild(auditBox);
+  lb.appendChild(auditBox);
 }
 
 export async function xpBox(token, query) {
+  const rb = document.querySelector(".right-boxes");
   const xpData = await fetchData(token, query);
   console.log("xpData ============>", xpData.data.data.transaction);
 
@@ -87,7 +90,7 @@ export async function xpBox(token, query) {
     <!-- transaction containers -->
   </div>
   `;
-  app.appendChild(xpDiv);
+  rb.appendChild(xpDiv);
 
   // transactons container
   const transBox = document.querySelector(".transactions-box");
@@ -99,7 +102,8 @@ export async function xpBox(token, query) {
 
     const pathSpan = document.createElement("span");
     pathSpan.className = "pathSpan";
-    pathSpan.innerText = `${t.path}`; // project/exam
+    const p = formatPath(t.path);
+    pathSpan.innerText = `${p}`; // project/exam
     transaction_container.appendChild(pathSpan);
     console.log("t.path ======>", t.path);
 
@@ -116,6 +120,13 @@ export async function xpBox(token, query) {
 
     transBox.appendChild(transaction_container);
   });
+}
+
+function formatPath(path) {
+  if (path.includes("checkpoint")) {
+    return path.slice(25);
+  }
+  return path.slice(14);
 }
 
 function skllisGraph() {}

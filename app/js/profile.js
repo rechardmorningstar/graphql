@@ -9,24 +9,36 @@ export async function Profile() {
   btn.innerHTML = /*html*/ `<i class="fa-solid fa-right-from-bracket"></i> logout`;
   header.appendChild(btn);
 
-  logout();
-
-  // const app = document.getElementById("app");
   const token = localStorage.getItem("jwt");
+  const app = document.getElementById("app");
+
+  logout();
+  await greetingBox(token, userNameQuery);
+  
+  const boxes_container = document.createElement('div')
+  boxes_container.className = "boxes-container";
+  app.appendChild(boxes_container)
+
+  const left_boxes = document.createElement("div");
+  left_boxes.className = "left-boxes";
+  boxes_container.appendChild(left_boxes);
+
+  const right_boxes = document.createElement("div");
+  right_boxes.className = "right-boxes";
+  boxes_container.appendChild(right_boxes);
+
+
 
   // greeting user
-  await greetingBox(token, userNameQuery)
 
   // displaying level
-  await levelBox(token, auditAndLevelQuery)
-
+  await levelBox(token, auditAndLevelQuery);
 
   // displaying audit ratio
-  await auditBox(token, auditAndLevelQuery)
-
+  await auditBox(token, auditAndLevelQuery);
 
   // xp section
-  await xpBox(token, xpQuery)
+  await xpBox(token, xpQuery);
 }
 
 // You need to do at least two different statistic graphs for the data given

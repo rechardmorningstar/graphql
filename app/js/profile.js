@@ -34,3 +34,4 @@ export async function Profile() {
 // add dark mode to the circle
 
 // todo : when the screen reaches 1070px get move the xp box down
+// byte to k to m

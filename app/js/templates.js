@@ -84,30 +84,39 @@ export async function xpBox(token, query) {
   xpDiv.innerHTML = /*html*/ `
   <div class="xpValue">${xpValue} k</div>
   <div class="transactions-box">
-    <!--  -->
+    <!-- transaction containers -->
   </div>
   `;
   app.appendChild(xpDiv);
-
-  /**
-        "path": "/oujda/module/real-time-forum",
-        "amount": 103500,
-        "createdAt": "2025-03-04T15:31:57.46324+00:00"
-      }
-   */
 
   // transactons container
   const transBox = document.querySelector(".transactions-box");
   const txData = xpData.data.data.transaction;
 
   txData.forEach((t) => {
-    const pathSpan = document.createElement('span')
+    const transaction_container = document.createElement("div");
+    transaction_container.className = "transaction_container";
+
+
+    const dateSpan = document.createElement("span");
+    dateSpan.className = "dateSpan";
+    const d = new Date(t.createdAt).toLocaleDateString("en-GB");
+    dateSpan.textContent = `${d}`; // date
+    transaction_container.appendChild(dateSpan);
+
+    const pathSpan = document.createElement("span");
     pathSpan.className = "pathSpan";
-    const amountSpan = document.createElement('span');
-    amountSpan.className = "amountSpan";
-    const dateSpan = document.createElement('span');
-    dateSpan.className = 'dateSpan';
+    pathSpan.innerText = `${t.path}`; // project/exam
+    transaction_container.appendChild(pathSpan);
+    console.log("t.path ======>", t.path);
     
+    const amountSpan = document.createElement("span");
+    amountSpan.className = "amountSpan";
+    amountSpan.textContent = `${t.amount/1000} k`; // xp
+    transaction_container.appendChild(amountSpan);
+
+
+    transBox.appendChild(transaction_container);
   });
 }
 

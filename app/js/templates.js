@@ -97,24 +97,22 @@ export async function xpBox(token, query) {
     const transaction_container = document.createElement("div");
     transaction_container.className = "transaction_container";
 
+    const pathSpan = document.createElement("span");
+    pathSpan.className = "pathSpan";
+    pathSpan.innerText = `${t.path}`; // project/exam
+    transaction_container.appendChild(pathSpan);
+    console.log("t.path ======>", t.path);
+
+    const amountSpan = document.createElement("span");
+    amountSpan.className = "amountSpan";
+    amountSpan.textContent = `${t.amount / 1000} k`; // xp
+    transaction_container.appendChild(amountSpan);
 
     const dateSpan = document.createElement("span");
     dateSpan.className = "dateSpan";
     const d = new Date(t.createdAt).toLocaleDateString("en-GB");
     dateSpan.textContent = `${d}`; // date
     transaction_container.appendChild(dateSpan);
-
-    const pathSpan = document.createElement("span");
-    pathSpan.className = "pathSpan";
-    pathSpan.innerText = `${t.path}`; // project/exam
-    transaction_container.appendChild(pathSpan);
-    console.log("t.path ======>", t.path);
-    
-    const amountSpan = document.createElement("span");
-    amountSpan.className = "amountSpan";
-    amountSpan.textContent = `${t.amount/1000} k`; // xp
-    transaction_container.appendChild(amountSpan);
-
 
     transBox.appendChild(transaction_container);
   });

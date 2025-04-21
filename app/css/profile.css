@@ -1,14 +1,13 @@
-/* Base styles */
 :root {
-  --primary-color: #00ffff;
-  --secondary-color: #ff00ff;
+  --primary-color: #FFFFFF;
+  --secondary-color: #888888;
   --background-dark: #000000;
-  --background-light: #ffffff;
-  --text-dark: #00ffff;
+  --background-light: #FFFFFF;
+  --text-dark: #FFFFFF;
   --text-light: #000000;
-  --accent-color: #ff2975;
-  --glow-effect: 0 0 10px var(--primary-color);
-  --border-neon: 1px solid var(--primary-color);
+  --accent-color: #CCCCCC;
+  --glow-effect: none;
+  --border-neon: 1px solid #FFFFFF;
 }
 
 body {
@@ -17,16 +16,11 @@ body {
   background-color: var(--background-light);
   color: var(--text-light);
   transition: background-color 0.3s, color 0.3s;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
-/* Header */
 #hdr {
   width: 100%;
   height: 70px;
-  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -36,15 +30,13 @@ body {
   top: 0;
   left: 0;
   z-index: 100;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
 
-/* Buttons */
 #darkModeToggle, #logoutBtn {
   padding: 8px 12px;
-  border: var(--border-neon);
+  /* border: var(--border-neon); */
   background: transparent;
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
   cursor: pointer;
   border-radius: 4px;
   font-family: 'Orbitron', sans-serif;
@@ -60,19 +52,14 @@ body {
   transform: translateY(-2px);
 }
 
-/* Main content */
 #app {
-  /* display: grid; */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  padding: 90px 20px 20px;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* User greeting */
 .greeting-user {
   grid-column: 1 / -1;
   font-size: 2em;
@@ -86,12 +73,9 @@ body {
   letter-spacing: 2px;
 }
 
-/* Common box styling */
 .levelDiv, .auditBox, .xpDiv {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,16 +83,16 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: var(--border-neon);
   min-height: 200px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .levelDiv:hover, .auditBox:hover, .xpDiv:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), var(--glow-effect);
+  transform: translateY(-2px);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Level circle */
 .levelDiv svg circle {
-  stroke: var(--primary-color);
+  stroke: #000000;
   stroke-dasharray: 283;
   stroke-dashoffset: 0;
   animation: pulse 2s infinite;
@@ -119,8 +103,6 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
 }
-
-
 
 .auditBox .box {
   width: 100%;
@@ -135,7 +117,7 @@ body {
 }
 
 .auditBox .line1 svg line, .auditBox .line2 svg line {
-  stroke: var(--accent-color);
+  stroke: #000000;
   stroke-linecap: round;
 }
 
@@ -153,10 +135,9 @@ body {
   text-align: center;
 }
 
-/* XP div */
 .xpDiv {
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 1em;
+  /* font-weight: bold; */
   position: relative;
   overflow: hidden;
   display: flex;
@@ -172,7 +153,10 @@ body {
   color: var(--secondary-color);
 }
 
-/* Form styling */
+.xpValue {
+  color: var(--text-light);
+}
+
 form {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 30px;
@@ -229,7 +213,6 @@ form button[type="submit"]:hover {
   text-align: center;
 }
 
-/* Dark mode */
 body.dark {
   background-color: var(--background-dark);
   color: var(--text-dark);
@@ -244,6 +227,12 @@ body.dark .auditBox,
 body.dark .xpDiv {
   background-color: rgba(0, 255, 255, 0.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .levelDiv svg circle,
+body.dark .auditBox .line1 svg line, 
+body.dark .auditBox .line2 svg line {
+  stroke: #FFFFFF;
 }
 
 body.dark .levelDiv svg text {
@@ -269,23 +258,36 @@ body.dark #darkModeToggle, body.dark #logoutBtn {
   background-color: transparent;
 }
 
-/* Animations */
 @keyframes pulse {
-  0% { stroke-width: 10; }
-  50% { stroke-width: 14; }
-  100% { stroke-width: 10; }
+  0%, 50%, 100% { stroke-width: 2; }
 }
 
-/* Responsive adjustments */
+.transaction_container {
+  border: 1px solid #000000;
+}
+
+body.dark .transaction_container {
+  border: 1px solid #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.transaction_container:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.dark .transaction_container:hover {
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2);
+}
+
 @media (max-width: 768px) {
   #app {
     grid-template-columns: 1fr;
   }
-  
+
   .greeting-user {
     font-size: 1.5em;
   }
-  
+
   .levelDiv, .auditBox, .xpDiv {
     min-height: 180px;
   }
@@ -296,35 +298,27 @@ body.dark #darkModeToggle, body.dark #logoutBtn {
     height: 60px;
     padding: 0 10px;
   }
-  
+
   #darkModeToggle, #logoutBtn {
     padding: 6px 10px;
     font-size: 0.8em;
   }
-  
+
   .greeting-user {
     font-size: 1.2em;
     padding: 10px;
   }
-  
+
   #app {
     padding: 70px 10px 10px;
   }
 }
 
-
-.boxes-container {
-  display: flex;
-  gap: 20px;
+.levelDiv, .auditBox {
+  width: 320px; /* or any desired width */
 }
 
-.left-boxes {
-  flex: 0 0 60%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.right-boxes {
-  flex: 0 0 40%;
+.level-circle {
+  width: 6em;
+  height: auto;
 }

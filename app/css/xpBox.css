@@ -1,8 +1,8 @@
 /* XP Value */
 .xpValue {
-  /* font-size: 2.5em; */
+  font-size: 1.5em;
   font-weight: bold;
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
   margin-bottom: 20px;
   text-shadow: var(--glow-effect);
 }
@@ -73,3 +73,4 @@ body.dark .transaction_container {
 body.dark .dateSpan {
   color: #aaa;
 }
+

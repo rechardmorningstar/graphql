@@ -37,13 +37,13 @@ export const AuditRatio = async (token, query, size = 200) => {
     svg.setAttribute('height', size);
     const aPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     aPath.setAttribute('d', getArcPath(0, aAngle));
-    aPath.setAttribute('stroke', '#4b7bec');
+    aPath.setAttribute('stroke', '#0a0a0a');
     aPath.setAttribute('stroke-width', strokeWidth);
     aPath.setAttribute('fill', 'none');
     svg.appendChild(aPath);
     const bPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     bPath.setAttribute('d', getArcPath(aAngle, bAngle));
-    bPath.setAttribute('stroke', '#fd9644');
+    bPath.setAttribute('stroke', '#d3d3d3');
     bPath.setAttribute('stroke-width', strokeWidth);
     bPath.setAttribute('fill', 'none');
     svg.appendChild(bPath);
@@ -54,19 +54,11 @@ export const AuditRatio = async (token, query, size = 200) => {
     svg.appendChild(centerCircle);
     
     const ratio = String(auditData.data.data.user[0].auditRatio).slice(0,3)
-    let ratioColor = 'red';
-    if (ratio > 1.2) {
-        ratioColor = 'green';
-    } else if (ratio > 0.9) {
-        ratioColor = 'yellow';
-    } else if (ratio > 0.7) {
-        ratioColor = 'orange';
-    }
     const ratioText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     ratioText.textContent = `${ratio}`;
     ratioText.setAttribute('x', center);
     ratioText.setAttribute('y', center);
-    ratioText.setAttribute('fill', ratioColor);
+    ratioText.setAttribute('fill', '#ffffff');
     ratioText.setAttribute('text-anchor', 'middle');
     ratioText.setAttribute('alignment-baseline', 'middle');
     svg.appendChild(ratioText);

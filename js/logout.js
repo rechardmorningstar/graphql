@@ -3,6 +3,6 @@ export function logout(){
     if (!logoutBtn) return;
     logoutBtn.addEventListener('click', ()=>{
         localStorage.removeItem('jwt')
-        window.location.href = '/login'; // Redirect to login
+        window.location.href = '/'; 
     })
 }

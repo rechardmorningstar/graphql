@@ -1,7 +1,7 @@
 import { authUrl } from "./const.js";
 
 export function HandleLogin(){
-   // const app = document.getElementById('app')
+    const app = document.getElementById('app')
     if (app){
         app.innerHTML = /*html*/`
         <form id="loginForm">

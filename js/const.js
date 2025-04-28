@@ -67,3 +67,16 @@ export const xpQuery = `
     }
 }
 `;
+
+export const skillsQuery = `
+{
+        user {
+            transactions(
+            where: { type: { _nin: ["xp", "level", "up", "down"] } }
+            ) {
+                type
+                amount
+            }
+        }
+    }
+`;

@@ -1,9 +1,7 @@
 import { HandleLogin } from "./js/login.js";
 import { Profile } from "./js/profile.js";
-import { darkMode } from "./js/darkMode.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  darkMode();
   await handleRoutes();
 });
 
@@ -24,7 +22,6 @@ async function handleRoutes() {
   } else if (router[path]) {
     return await router[path]();
   } else {
-    // error
     targetPath = "/login";
   }
 

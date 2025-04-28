@@ -52,7 +52,8 @@ export const AuditRatio = async (token, query, size = 200) => {
     centerCircle.setAttribute('cy', center);
     centerCircle.setAttribute('r', radius - strokeWidth);
     svg.appendChild(centerCircle);
-    const ratio = (a / b).toFixed(1);
+    
+    const ratio = String(auditData.data.data.user[0].auditRatio).slice(0,3)
     let ratioColor = 'red';
     if (ratio > 1.2) {
         ratioColor = 'green';

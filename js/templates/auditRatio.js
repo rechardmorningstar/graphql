@@ -53,7 +53,9 @@ export const AuditRatio = async (token, query, size = 200) => {
     centerCircle.setAttribute('r', radius - strokeWidth);
     svg.appendChild(centerCircle);
     
-    const ratio = String(auditData.data.data.user[0].auditRatio).slice(0,3)
+    const str = String(auditData.data.data.user[0].auditRatio)
+    const ratio = String(Math.ceil(Number(str.slice(0,4))*10)/10)
+    
     const ratioText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     ratioText.textContent = `${ratio}`;
     ratioText.setAttribute('x', center);
